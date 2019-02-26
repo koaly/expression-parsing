@@ -1,13 +1,13 @@
-In case of derivative of divide operation is not available but others are finished.
+##### *In case of derivative of divide operation is not available but others are finished.*
 
 
-Test inputs for section 1 and section 2 is in folder 'part1'
+>Test inputs for section 1 and section 2 is in folder 'part1'
+>
+>Test inputs for section 3 and section 4 is in folder 'part2'
 
-Test inputs for section 3 and section 4 is in folder 'part2'
 
-
-Use these commands for easy testing:
-
+#### Test command:
+```bash
 make 'or' make all  : test all program.
 
 make expreval       : test section 1 expreval.c with all 'part1' test inputs.
