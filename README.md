@@ -6,7 +6,7 @@
 >Test inputs for section 3 and section 4 is in folder 'part2'
 
 
-#### Test command:
+### Test command:
 ```bash
 make 'or' make all  : test all program.
 
