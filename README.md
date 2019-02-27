@@ -1,6 +1,3 @@
-##### *In case of derivative of divide operation is not available but others are finished.*
-
-
 >Test inputs for section 1 and section 2 is in folder 'part1'
 >
 >Test inputs for section 3 and section 4 is in folder 'part2'
