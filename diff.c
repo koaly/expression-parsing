@@ -103,6 +103,18 @@ static int SGet()
     return sym;
 }
 static int sym;
+static Node clone(Node root)
+{
+    if (root == NULL)
+        return root;
+
+    Node temp = malloc(sizeof(NodeDesc));
+    temp->kind = root->kind;
+    temp->val = root->val;
+    temp->left = clone(root->left);
+    temp->right = clone(root->right);
+    return temp;
+}
 static Node Expr();
 static Node Factor()
 {
@@ -200,13 +212,48 @@ static Node diff(Node root)
 
         l->kind = times;
         l->left = diff(root->left);
-        l->right = root->right;
+        l->right = clone(root->right);
 
         r->kind = times;
-        r->left = root->left;
+        r->left = clone(root->left);
         r->right = diff(root->right);
 
         res->kind = plus;
+        res->left = l;
+        res->right = r;
+        return res;
+    }
+    else if (root->kind == divide)
+    {
+        Node l, r, ll, lr, rl, rr;
+        res = malloc(sizeof(NodeDesc));
+        l = malloc(sizeof(NodeDesc));
+        r = malloc(sizeof(NodeDesc));
+        ll = malloc(sizeof(NodeDesc));
+        lr = malloc(sizeof(NodeDesc));
+        rl = malloc(sizeof(NodeDesc));
+        rr = malloc(sizeof(NodeDesc));
+
+        ll->kind = times;
+        ll->left = diff(root->left);
+        ll->right = clone(root->right);
+
+        lr->kind = times;
+        lr->left = clone(root->left);
+        lr->right = diff(root->right);
+
+        l->kind = minus;
+        l->left = ll;
+        l->right = lr;
+
+        rl = clone(root->right);
+        rr = clone(root->right);
+
+        r->kind = times;
+        r->left = rl;
+        r->right = rr;
+
+        res->kind = divide;
         res->left = l;
         res->right = r;
         return res;
