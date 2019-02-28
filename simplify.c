@@ -326,8 +326,6 @@ static Node oneSimplify(Node root)
                 root = root->left;
             }
         }
-        root->left = oneSimplify(root->left);
-        root->right = oneSimplify(root->right);
     }
     return root;
 }
@@ -337,7 +335,7 @@ static Node simplify(Node root)
     res = root;
     while (1)
     {
-        temp = oneSimplify(res);
+        temp = oneSimplify(clone(res));
         if (CompareNode(temp, res))
             break;
         res = temp;
